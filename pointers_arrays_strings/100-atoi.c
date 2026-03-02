@@ -21,7 +21,7 @@ int _atoi(char *s)
 	{
 		if (s[i] == '-')
 			neg_count++;
-		else if (s[i] == '+')
+		else if (s[i] == '+') 
 			;
 		else if (s[i] >= '0' && s[i] <= '9')
 		{
@@ -34,6 +34,6 @@ int _atoi(char *s)
 		i++;
 	}
 	if (sign == -1)
-		return (-(int)num);
+		return ((int)(~num + 1));
 	return ((int)num);
 }
