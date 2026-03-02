@@ -33,5 +33,7 @@ int _atoi(char *s)
 			break;
 		i++;
 	}
-	return (sign * (int)num);
+	if (sign == -1)
+		return (-(int)num);
+	return ((int)num);
 }
