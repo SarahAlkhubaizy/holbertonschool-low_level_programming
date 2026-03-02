@@ -10,7 +10,7 @@ int _atoi(char *s)
 {
 	int i;
 	int sign;
-	int num;
+	unsigned int num;
 	int neg_count;
 
 	i = 0;
@@ -33,5 +33,5 @@ int _atoi(char *s)
 			break;
 		i++;
 	}
-	return (sign * num);
+	return (sign * (int)num);
 }
