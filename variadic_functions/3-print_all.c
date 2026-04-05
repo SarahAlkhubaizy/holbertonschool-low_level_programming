@@ -1,7 +1,6 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include <string.h>
 
 /**
  * print_all - prints anything
@@ -16,29 +15,43 @@ void print_all(const char * const format, ...)
 	unsigned int i;
 	int sep;
 	char *str;
-	char *types = "cifs";
-	char *formats[] = {"%c", "%d", "%f", "%s"};
 
 	va_start(args, format);
 	i = 0;
 	sep = 0;
 	while (format && format[i])
 	{
-		str = strchr(types, format[i]);
-		if (str)
+		str = NULL;
+		if (format[i] == 'c')
 		{
 			if (sep)
 				printf(", ");
-			if (format[i] == 's')
-			{
-				char *s = va_arg(args, char *);
-
-				printf(s ? "%s" : "(nil)", s ? s : "(nil)");
-			}
-			else if (format[i] == 'f')
-				printf(formats[str - types], va_arg(args, double));
+			printf("%c", va_arg(args, int));
+			sep = 1;
+		}
+		if (format[i] == 'i')
+		{
+			if (sep)
+				printf(", ");
+			printf("%d", va_arg(args, int));
+			sep = 1;
+		}
+		if (format[i] == 'f')
+		{
+			if (sep)
+				printf(", ");
+			printf("%f", va_arg(args, double));
+			sep = 1;
+		}
+		if (format[i] == 's')
+		{
+			if (sep)
+				printf(", ");
+			str = va_arg(args, char *);
+			if (str == NULL)
+				printf("(nil)");
 			else
-				printf(formats[str - types], va_arg(args, int));
+				printf("%s", str);
 			sep = 1;
 		}
 		i++;
