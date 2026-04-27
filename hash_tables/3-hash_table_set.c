@@ -7,8 +7,9 @@
  * @ht: The hash table
  * @key: The key to search for
  * @value: The new value
+ * @index: The index in the hash table array
  *
- * Return: 1 if updated, 0 if key not found
+ * Return: 1 if updated, -1 if malloc fails, 0 if key not found
  */
 static int update_value(hash_table_t *ht, const char *key,
 		const char *value, unsigned long int index)
